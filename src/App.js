@@ -1,24 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
 
-function App() {
+import './App.scss';
+import { AddTask } from './components/AddTask/AddTask';
+import { TaskList } from './components/TaskList/TaskList';
+import {Container} from "@mui/material";
+import {Navbar} from "./components/Navbar/Navbar";
+
+const App =()=> {
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      <div className='app'>
+          <Navbar/>
+
+          <Container maxWidth='md' className="App">
+            <AddTask />
+            <h1> Current task</h1>
+            <TaskList flag={false} />
+            <h1> Done task</h1>
+            <TaskList flag={true}/>
+          </Container>
+
+      </div>
+
+    
   );
 }
 

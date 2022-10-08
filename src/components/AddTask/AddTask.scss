@@ -1,0 +1,17 @@
+.addtask-container{
+  padding: 10px;
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  flex-flow: column wrap;
+
+  .addtask-textfield{
+    width: 100%;
+  }
+
+  .addtask-button-container{
+    padding: 10px;
+    display: flex;
+    justify-content: flex-end;
+  }
+}

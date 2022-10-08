@@ -1,0 +1,44 @@
+.task{
+    display: flex;
+    justify-content: center;
+    word-break: break-all;
+    width: 100%;
+    text-align: left;
+
+    padding: 10px;
+    border-bottom: 1px solid #f0f0f0;
+
+    .task-item{
+        font-size: 1.4em;
+        display: flex;
+        align-items: center;
+
+        width: 100%;
+    }
+
+    .task-button-group{
+        display: flex;
+        .task-button{
+            width: 50%;
+        }
+
+
+    }
+
+}
+
+
+
+.done{
+    text-decoration: line-through;
+}
+.modaltask-navbar-container{
+    display: flex;
+    justify-content: flex-end;
+}
+
+.tags-container{
+    display: flex;
+    width: 100%;
+    justify-content: flex-start;
+}
