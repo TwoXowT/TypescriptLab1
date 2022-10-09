@@ -44,18 +44,8 @@ const taskListSlice = createSlice({
         },
 
 
-        addDescription: (state,action)=>{
-            state.taskList = state.taskList.map((task) => {
-                    if (task.id === action.payload.id) {
-                        task.description = action.payload.description;
-                    }
-                    return task;
-                })
-
-        }
-
     }
 })
 
-export const {addTask, removeTask, doneTask, addDescription,refactorTask} = taskListSlice.actions;
+export const {addTask, removeTask, doneTask,refactorTask} = taskListSlice.actions;
 export default taskListSlice.reducer;
