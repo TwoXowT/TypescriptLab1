@@ -5,19 +5,13 @@ import './TaskList.scss';
 import {useDispatch, useSelector} from "react-redux";
 import {
     Box,
-    Button, Chip,
-    FormControl,
     IconButton,
-    InputLabel,
-    MenuItem,
-    Modal, OutlinedInput,
-    Select,
-    TextField,
+    Modal,
     Typography
 } from "@mui/material";
 import {ArrowDownward, ArrowUpward, CancelOutlined} from "@mui/icons-material";
 import CheckBoxOutlineBlankRoundedIcon from '@mui/icons-material/CheckBoxOutlineBlankRounded';
-import {addDescription, doneTask, removeTask,addTagToTask,refactorTask} from "../../reducers/taskListReducer";
+import { doneTask, removeTask,refactorTask} from "../../reducers/taskListReducer";
 import CheckBoxRoundedIcon from '@mui/icons-material/CheckBoxRounded';
 import {TagArea} from "./additionalComponents/TagArea";
 import {DescriptionArea} from "./additionalComponents/DescriptionArea";
@@ -34,7 +28,6 @@ export const TaskList = ({flag}) => {
 
     const handleOpen = () => setOpen(true);
     const handleClose = () => {
-        console.log('dfsafdsa')
         setOpen(false);
         dispatch(refactorTask({currentTask}))
     }
@@ -89,7 +82,11 @@ export const TaskList = ({flag}) => {
         setCurrentTask(taskList[taskList.indexOf(currentTask)-1])
     }
 
-
+    function changeStatusTask(){
+        let newTask = {...currentTask}
+        newTask.done = !newTask.done
+        setCurrentTask(newTask)
+    }
 
 
 
@@ -113,8 +110,7 @@ export const TaskList = ({flag}) => {
                 open={open}
                 task={currentTask}
                 onClose={handleClose}
-                aria-labelledby="modal-modal-title"
-                aria-describedby="modal-modal-description"
+
             >
 
                 <Box sx={style}>
@@ -126,7 +122,7 @@ export const TaskList = ({flag}) => {
 
                     <Typography id="modal-modal-description" >
                         <IconButton className='task-button'
-                                    onClick={()=>completeTask(currentTask.id)} >
+                                    onClick={changeStatusTask} >
                             {currentTask.done?(<CheckBoxRoundedIcon/>):(<CheckBoxOutlineBlankRoundedIcon/>)}
                         </IconButton>
                         {currentTask.text}

@@ -3,7 +3,11 @@ import { initialState } from "./inithialState";
 
 import { createSlice } from '@reduxjs/toolkit';
 
+
+
 let idTask = 50
+
+
 const taskListSlice = createSlice({
     name: 'taskListSliser',
     initialState: initialState,
@@ -32,13 +36,8 @@ const taskListSlice = createSlice({
 
         refactorTask:(state, action)=>{
             state.taskList =  state.taskList.map((task) => {
-                console.log(action.payload)
                 if (task.id === action.payload.currentTask.id) {
-
-                    task.text = action.payload.currentTask.text || task.text
-                    task.tags = action.payload.currentTask.tags || task.tags
-                    task.description = action.payload.currentTask.description || task.tags
-
+                    task = action.payload.currentTask
                 }
                 return task;
             })
