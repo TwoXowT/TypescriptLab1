@@ -13,13 +13,12 @@ export const AddTask = ()=>{
     
     function handleKeyDown(e){
         if (e.key === 'Enter' && text) {
-            dispatch(addTask(text))
-            setText('')
+            buttonCreateClick()
         }
     }
     
     function buttonCreateClick(){
-        dispatch(addTask(text))
+        dispatch(addTask({text}))
         setText('')
     }
 

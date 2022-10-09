@@ -1,5 +1,4 @@
-import React, {useState} from "react";
-import {addDescription} from "../../../reducers/taskListReducer";
+import React, {useEffect, useState} from "react";
 import {Box, Button, TextField} from "@mui/material";
 
 export const DescriptionArea = ({currentTask, setCurrentTask})=>{
@@ -7,6 +6,9 @@ export const DescriptionArea = ({currentTask, setCurrentTask})=>{
     const [isEdit,setIsEdit] = useState(false)
     const [description, setDescription] = useState(currentTask.description || '')
 
+    useEffect(()=>{
+        console.log('decs:',description)
+    },[description])
 
     function handleChange(e) {
 
@@ -22,14 +24,23 @@ export const DescriptionArea = ({currentTask, setCurrentTask})=>{
         setIsEdit(false)
     }
 
+    function handleKeyDown(e) {
+        if (e.key === 'Enter' && description) {
+            saveDescription()
+        }
+    }
+
     return(
         <>
             {isEdit?(
                 <>
                     <TextField id="standard-basic"
-                               value={currentTask.description||''}
+                               value={description}
                                onChange={handleChange}
-                               variant="outlined" />
+                               variant="outlined"
+                               onKeyDown={handleKeyDown}
+                               inputProps={{step: 300}}
+                    />
                     <Button color = 'error'
                             variant='contained'
                             onClick={saveDescription}>SAVE</Button>
