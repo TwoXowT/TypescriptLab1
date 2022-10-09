@@ -13,12 +13,12 @@ const taskListSlice = createSlice({
     initialState: initialState,
     reducers:{
         addTask: (state,action)=>{
-
-                state.taskList = [{id:idTask++,
+                state.taskList = [
+                    {id:idTask++,
                     text: action.payload.text,
                     done: false,
-                    description: action.payload.description || '',
-                    tags: action.payload.description || [],
+                    description: '',
+                    tags:  [],
                 }, ...state.taskList]
         },
         removeTask: (state,action)=>{
@@ -43,16 +43,6 @@ const taskListSlice = createSlice({
             })
         },
 
-        addTagToTask: (state, action)=>{
-            state.taskList =  state.taskList.map((task) => {
-                if (task.id === action.payload.id) {
-                    task.tags = action.payload.tags
-                    console.log('indexTASKREDUX:',state.taskList[0])
-
-                }
-                return task;
-            })
-        },
 
         addDescription: (state,action)=>{
             state.taskList = state.taskList.map((task) => {
@@ -67,5 +57,5 @@ const taskListSlice = createSlice({
     }
 })
 
-export const {addTask, removeTask, doneTask, addDescription,addTagToTask,refactorTask} = taskListSlice.actions;
+export const {addTask, removeTask, doneTask, addDescription,refactorTask} = taskListSlice.actions;
 export default taskListSlice.reducer;
