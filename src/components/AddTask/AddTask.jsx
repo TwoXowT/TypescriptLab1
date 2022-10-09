@@ -23,10 +23,26 @@ export const AddTask = ()=>{
         setText('')
     }
 
+    function buttonCancelClick(){
+        setText('')
+    }
+
+
     return(
         <Box className='addtask-container'>
             <TextField className='addtask-textfield' id="standard-basic" label="add some task" variant="standard"  onKeyDown={handleKeyDown} value={text} onChange={handleChange}/>
             <Box className='addtask-button-container'>
+                <Button
+                    variant="contained"
+                    onClick={()=>buttonCancelClick()}
+                    color='error'
+                    disabled={!text}
+                >
+
+                    Cancel
+                </Button>
+
+
                 <Button
                     variant="contained"
                     onClick={()=>buttonCreateClick()}

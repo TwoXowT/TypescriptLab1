@@ -17,22 +17,29 @@ import {
 } from "@mui/material";
 import {ArrowDownward, ArrowUpward, CancelOutlined} from "@mui/icons-material";
 import CheckBoxOutlineBlankRoundedIcon from '@mui/icons-material/CheckBoxOutlineBlankRounded';
-import {addDescription, doneTask, removeTask,addTagToTask} from "../../reducers/taskListReducer";
+import {addDescription, doneTask, removeTask,addTagToTask,refactorTask} from "../../reducers/taskListReducer";
 import CheckBoxRoundedIcon from '@mui/icons-material/CheckBoxRounded';
+import {TagArea} from "./additionalComponents/TagArea";
+import {DescriptionArea} from "./additionalComponents/DescriptionArea";
 
 
 export const TaskList = ({flag}) => {
     const [open, setOpen] = React.useState(false);
     const [isActiveNextTask, setIsActiveNextTask] = useState(false)
     const [isActivePrevTask, setIsActivePrevTask] = useState(false)
-
-
-    const handleOpen = () => setOpen(true);
-    const handleClose = () => setOpen(false);
-
     const taskList = useSelector(state => state.taskListReducer.taskList.filter((task) => task.done === flag))
     const allTags = useSelector(state => state.tagSlice.allTags)
     const [currentTask, setCurrentTask] = useState(taskList[1])
+
+
+    const handleOpen = () => setOpen(true);
+    const handleClose = () => {
+        console.log('dfsafdsa')
+        setOpen(false);
+        dispatch(refactorTask({currentTask}))
+    }
+
+
 
 
     // Контроль стрелок перехода к таскам в модальном окне
@@ -83,108 +90,7 @@ export const TaskList = ({flag}) => {
     }
 
 
-    const DescriptionArea = ()=>{
 
-        const [isEdit,setIsEdit] = useState(false)
-        const [description, setDescription] = useState(currentTask.description || '')
-
-
-        function handleChange(e) {
-
-            setDescription(e.target.value)
-
-        }
-
-
-        function saveDescription(){
-
-            dispatch(addDescription({payload:{id:currentTask.id, text:description}}))
-            setIsEdit(false)
-        }
-
-        return(
-            <>
-                {isEdit?(
-                    <>
-                        <TextField id="standard-basic"
-                                   value={currentTask.description||''}
-                                   onChange={handleChange}
-                                   variant="outlined" />
-                        <Button color = 'error'
-                                variant='contained'
-                                onClick={saveDescription}>SAVE</Button>
-                    </>
-
-                ):(
-                    <Box onClick={()=>setIsEdit(true)}>{currentTask.description || 'Add description'}</Box>
-                )}
-
-
-
-            </>
-        )
-    }
-
-
-    const TagArea = ()=>{
-        const ITEM_HEIGHT = 48;
-        const ITEM_PADDING_TOP = 8;
-        const MenuProps = {
-            PaperProps: {
-                style: {
-                    maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
-                    width: 250,
-                },
-            },
-        };
-
-        const handleChange = (event) =>{
-            const {
-                target: {value},
-            } = event;
-
-            let newTask = {...currentTask};
-            newTask.tags = value
-            setCurrentTask(newTask)
-            dispatch(addTagToTask({id:currentTask.id, tags:value }))
-        }
-
-        return(
-            <>
-                <FormControl>
-                    <InputLabel id='tags-area-label'>Tags</InputLabel>
-                    <Select
-                        labelId='tags-area-label'
-                        id='tags-area'
-                        multiple
-                        value={currentTask.tags}
-                        onChange={handleChange}
-                        input={<OutlinedInput id='select-tags' label='select' />}
-                        renderValue={(selected) => (
-                            <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
-                                {selected.map((value) => (
-                                    <Chip key={value} label={value} />
-                                ))}
-                            </Box>
-                        )}
-                        MenuProps={MenuProps}>
-
-                        {allTags.map((tag,index)=>(
-                            <MenuItem
-                            key={index}
-                            value={tag}
-                        >
-                            {tag}
-                        </MenuItem>))}
-
-
-                    >
-
-                    </Select>
-                </FormControl>
-            </>
-        )
-    }
 
 
 
@@ -226,8 +132,13 @@ export const TaskList = ({flag}) => {
                         {currentTask.text}
                     </Typography>
 
-                    <DescriptionArea />
-                    <TagArea/>
+                    <DescriptionArea
+                    currentTask={currentTask}
+                    setCurrentTask={setCurrentTask}/>
+                    <TagArea
+                    currentTask={currentTask}
+                    setCurrentTask={setCurrentTask}
+                    allTags={allTags}/>
                 </Box>
 
 

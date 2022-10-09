@@ -10,8 +10,6 @@ const App =()=> {
 
   return (
       <div className='app'>
-          <Navbar/>
-
           <Container maxWidth='md' className="App">
             <AddTask />
             <h1> Current task</h1>
