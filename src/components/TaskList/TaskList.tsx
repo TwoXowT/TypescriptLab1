@@ -1,8 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {Task} from '../Task/Task';
 import './TaskList.scss';
-
-import {useDispatch, useSelector} from "react-redux";
 import {
     Box,
     IconButton,
@@ -15,24 +13,27 @@ import { doneTask, removeTask,refactorTask} from "../../reducers/taskListReducer
 import CheckBoxRoundedIcon from '@mui/icons-material/CheckBoxRounded';
 import {TagArea} from "./additionalComponents/TagArea";
 import {DescriptionArea} from "./additionalComponents/DescriptionArea";
+import {useAppDispatch, useAppSelector} from "../../hooks";
 
+interface TaskListProps{
+    flag:boolean;
+}
 
-export const TaskList = ({flag}) => {
-    const [open, setOpen] = React.useState(false);
+export const TaskList: React.FC<TaskListProps> = ({flag}) => {
+    const [open, setOpen] = useState(false);
     const [isActiveNextTask, setIsActiveNextTask] = useState(false)
     const [isActivePrevTask, setIsActivePrevTask] = useState(false)
-    const taskList = useSelector(state => state.taskListReducer.taskList.filter((task) => task.done === flag))
-    const allTags = useSelector(state => state.tagSlice.allTags)
+
+
+   const taskList = useAppSelector(state => state.taskListReducer.taskList.filter((task:Task) => task.done === flag))
     const [currentTask, setCurrentTask] = useState(taskList[1])
-
-
     const handleOpen = () => setOpen(true);
     const handleClose = () => {
         setOpen(false);
         dispatch(refactorTask({currentTask}))
     }
 
-
+    const dispatch = useAppDispatch()
 
 
     // Контроль стрелок перехода к таскам в модальном окне
@@ -63,13 +64,13 @@ export const TaskList = ({flag}) => {
         p: 3,
     };
 
-    const dispatch = useDispatch()
 
-    function completeTask(id) {
+
+    function completeTask(id:number) {
         dispatch(doneTask(id))
     }
 
-    function deleteTask(id) {
+    function deleteTask(id:number) {
         dispatch(removeTask(id))
     }
 
@@ -96,7 +97,7 @@ export const TaskList = ({flag}) => {
 
 
             <Box className='tasklist-container'>
-                {taskList.filter((task) => task.done === flag).map((task) => <Task task={task}
+                {taskList.filter((task:Task) => task.done === flag).map((task:Task) => <Task task={task}
                                                                                    key={task.id}
                                                                                    handleOpen={handleOpen}
                                                                                    setCurrentTask={setCurrentTask}
@@ -108,9 +109,7 @@ export const TaskList = ({flag}) => {
 
             <Modal
                 open={open}
-                task={currentTask}
                 onClose={handleClose}
-
             >
 
                 <Box sx={style}>
@@ -134,7 +133,7 @@ export const TaskList = ({flag}) => {
                     <TagArea
                     currentTask={currentTask}
                     setCurrentTask={setCurrentTask}
-                    allTags={allTags}/>
+                   />
                 </Box>
 
 

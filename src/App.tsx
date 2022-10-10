@@ -7,17 +7,18 @@ import {Container} from "@mui/material";
 
 const App: React.FC = () => {
 
+
   return (
-      <React.Frag className='app'>
+      <React.Fragment >
           <Container maxWidth='md' className="App">
             <AddTask />
             <h1> Current task</h1>
-            <TaskList flag={false} />
+              <TaskList flag={false}/>
             <h1> Done task</h1>
-            <TaskList flag={true}/>
+              <TaskList flag={true}/>
           </Container>
 
-      </React.Frag>
+      </React.Fragment>
 
     
   );

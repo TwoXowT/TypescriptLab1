@@ -2,17 +2,17 @@
 import { initialState } from "./inithialState";
 
 import { createSlice } from '@reduxjs/toolkit';
-
-
+import type { PayloadAction } from '@reduxjs/toolkit'
 
 let idTask = 50
 
 
 const taskListSlice = createSlice({
     name: 'taskListSliser',
-    initialState: initialState,
+    initialState,
     reducers:{
-        addTask: (state,action)=>{
+        addTask: (state, action:PayloadAction<any>)=>{
+            console.log('i am here', action)
                 state.taskList = [
                     {id:idTask++,
                     text: action.payload.text,

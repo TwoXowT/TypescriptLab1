@@ -6,8 +6,8 @@ export const tagSlice = createSlice({
     name: 'tagSlice',
     initialState: initialState,
     reducers:{
-        addTag:(state,action) =>{state.tags = [action.payload,...state.tags]},
-        removeTag: (state, action)=>{state.tags.filter(tag=> tag !==action.payload)},
+        addTag:(state,action) =>{state.allTags = [action.payload,...state.allTags]},
+        removeTag: (state, action)=>{state.allTags.filter(tag=> tag !==action.payload)},
     }
 })
 

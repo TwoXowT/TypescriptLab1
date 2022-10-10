@@ -1,9 +1,17 @@
-import {refactorTask} from "../../../reducers/taskListReducer";
 import {Box, Chip, FormControl, InputLabel, MenuItem, OutlinedInput, Select} from "@mui/material";
-import React from "react";
+import React, {useState} from "react";
+import {Task} from "../../Task/Task";
+import {initialState} from "../../../reducers/inithialState";
 
-export const TagArea = ({currentTask,setCurrentTask,allTags})=>{
 
+interface TagAreaProps{
+    currentTask: Task;
+    setCurrentTask: (task: Task)=> void;
+}
+
+
+export const TagArea: React.FC<TagAreaProps> = ({currentTask,setCurrentTask})=>{
+    const [allTags,setAlltags] = useState<Array<string>>(initialState.allTags)
     const ITEM_HEIGHT = 48;
     const ITEM_PADDING_TOP = 8;
     const MenuProps = {
@@ -15,7 +23,7 @@ export const TagArea = ({currentTask,setCurrentTask,allTags})=>{
         },
     };
 
-    function handleChange(e){
+    function handleChange(e:any){
         let newTask = {...currentTask};
         newTask.tags = e.target.value
         setCurrentTask(newTask)
@@ -41,15 +49,13 @@ export const TagArea = ({currentTask,setCurrentTask,allTags})=>{
                     )}
                     MenuProps={MenuProps}>
 
-                    {allTags.map((tag,index)=>(
+                    {allTags.map( (tag:string, index:any)=>(
                         <MenuItem
                             key={index}
                             value={tag}
                         >
                             {tag}
                         </MenuItem>))}
-
-                    >
 
                 </Select>
             </FormControl>
