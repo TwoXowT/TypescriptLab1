@@ -1,7 +1,14 @@
 import React, {useEffect, useState} from "react";
 import {Box, Button, TextField} from "@mui/material";
 
-export const DescriptionArea = ({currentTask, setCurrentTask})=>{
+
+interface DescriptionAreaProps{
+    currentTask: Task;
+    setCurrentTask: (task:Task)=> void;
+}
+
+
+export const DescriptionArea: React.FC<DescriptionAreaProps> = ({currentTask, setCurrentTask})=>{
 
     const [isEdit,setIsEdit] = useState(false)
     const [description, setDescription] = useState(currentTask.description || '')
@@ -10,7 +17,7 @@ export const DescriptionArea = ({currentTask, setCurrentTask})=>{
         console.log('decs:',description)
     },[description])
 
-    function handleChange(e) {
+    function handleChange(e:any) {
 
         setDescription(e.target.value)
 
@@ -24,7 +31,7 @@ export const DescriptionArea = ({currentTask, setCurrentTask})=>{
         setIsEdit(false)
     }
 
-    function handleKeyDown(e) {
+    function handleKeyDown(e:any) {
         if (e.key === 'Enter' && description) {
             saveDescription()
         }

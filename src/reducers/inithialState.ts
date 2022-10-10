@@ -1,4 +1,10 @@
-export const initialState = {
+interface initialStateProps{
+    taskList: Task[];
+    allTags: string[]
+}
+
+
+export const initialState: initialStateProps = {
     taskList: [
         {
             id: 0,
@@ -39,6 +45,6 @@ export const initialState = {
 
     ],
 
-    allTags:['work','leisure','home','family','study','home']
+    allTags:['work','leisure','home','family','study']
 
 }

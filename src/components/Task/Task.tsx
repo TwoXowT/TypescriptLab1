@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import CheckIcon from '@mui/icons-material/Check';
 import DeleteIcon from '@mui/icons-material/Delete';
 import BorderColorIcon from '@mui/icons-material/BorderColor';
@@ -6,25 +6,34 @@ import './Task.scss';
 import {Box, Chip, IconButton} from "@mui/material";
 import LabelIcon from '@mui/icons-material/Label';
 
-export const Task = ({task,handleOpen,setCurrentTask,completeTask,deleteTask})=>{
 
-    function openModal(task){
+interface TaskProps{
+    task: Task;
+    handleOpen: ()=> void;
+    completeTask: (id:number)=> void;
+    deleteTask: (id:number)=>void;
+    setCurrentTask: (task: Task)=>void;
+}
+
+
+
+export const Task: React.FC<TaskProps> = ({
+    task,handleOpen,completeTask,deleteTask,setCurrentTask
+                                          })=>{
+
+    function openModal(task: Task){
         setCurrentTask(task)
         handleOpen()
     }
-
-
-
-
-    const completeStatus = task.done ? 'text': '';
 
     return(
       <>
           <Box className='task'>
               <IconButton className='task-button'
                           disabled={task.done}
-                          variant={completeStatus}
-                          onClick={()=>completeTask(task.id)} >
+                          // variant={task.done ? 'text': ''}
+                          onClick={()=>completeTask(task.id)}
+              >
                   <CheckIcon/>
               </IconButton>
               <Box className={task.done?"done task-item":"task-item"}>{task.text}</Box>
