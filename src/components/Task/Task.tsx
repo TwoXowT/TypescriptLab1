@@ -6,6 +6,7 @@ import './Task.scss';
 import {Box, Chip, IconButton} from "@mui/material";
 import LabelIcon from '@mui/icons-material/Label';
 
+
 export const Task = ({task,handleOpen,setCurrentTask,completeTask,deleteTask})=>{
 
     function openModal(task){

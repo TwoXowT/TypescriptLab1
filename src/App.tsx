@@ -4,12 +4,11 @@ import './App.scss';
 import { AddTask } from './components/AddTask/AddTask';
 import { TaskList } from './components/TaskList/TaskList';
 import {Container} from "@mui/material";
-import {Navbar} from "./components/Navbar/Navbar";
 
-const App =()=> {
+const App: React.FC = () => {
 
   return (
-      <div className='app'>
+      <React.Frag className='app'>
           <Container maxWidth='md' className="App">
             <AddTask />
             <h1> Current task</h1>
@@ -18,7 +17,7 @@ const App =()=> {
             <TaskList flag={true}/>
           </Container>
 
-      </div>
+      </React.Frag>
 
     
   );

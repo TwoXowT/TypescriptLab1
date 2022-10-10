@@ -39,6 +39,6 @@ export const initialState = {
 
     ],
 
-    allTags:['work','leisure','home','family','study','home']
+    allTags:['work','leisure','home','family','study']
 
 }
