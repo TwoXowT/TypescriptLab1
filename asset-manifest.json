@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/typescriptlab1/static/css/main.f7bed7db.css",
+    "main.js": "/typescriptlab1/static/js/main.7d8b1305.js",
+    "static/js/787.28cb0dcd.chunk.js": "/typescriptlab1/static/js/787.28cb0dcd.chunk.js",
+    "index.html": "/typescriptlab1/index.html",
+    "main.f7bed7db.css.map": "/typescriptlab1/static/css/main.f7bed7db.css.map",
+    "main.7d8b1305.js.map": "/typescriptlab1/static/js/main.7d8b1305.js.map",
+    "787.28cb0dcd.chunk.js.map": "/typescriptlab1/static/js/787.28cb0dcd.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.f7bed7db.css",
+    "static/js/main.7d8b1305.js"
+  ]
+}
