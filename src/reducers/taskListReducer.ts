@@ -11,8 +11,7 @@ const taskListSlice = createSlice({
     name: 'taskListSliser',
     initialState,
     reducers:{
-        addTask: (state, action:PayloadAction<any>)=>{
-            console.log('i am here', action)
+        addTask: (state, action)=>{
                 state.taskList = [
                     {id:idTask++,
                     text: action.payload.text,

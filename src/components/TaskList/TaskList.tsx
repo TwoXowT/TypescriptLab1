@@ -5,7 +5,7 @@ import {
     Box,
     IconButton,
     Modal,
-    Typography
+    Typography, useTheme
 } from "@mui/material";
 import {ArrowDownward, ArrowUpward, CancelOutlined} from "@mui/icons-material";
 import CheckBoxOutlineBlankRoundedIcon from '@mui/icons-material/CheckBoxOutlineBlankRounded';
@@ -17,15 +17,14 @@ import {useAppDispatch, useAppSelector} from "../../hooks";
 
 interface TaskListProps{
     flag:boolean;
+    filter?: string;
 }
 
-export const TaskList: React.FC<TaskListProps> = ({flag}) => {
+export const TaskList: React.FC<TaskListProps> = ({flag,filter}) => {
     const [open, setOpen] = useState(false);
     const [isActiveNextTask, setIsActiveNextTask] = useState(false)
     const [isActivePrevTask, setIsActivePrevTask] = useState(false)
-
-
-   const taskList = useAppSelector(state => state.taskListReducer.taskList.filter((task:Task) => task.done === flag))
+    const taskList = useAppSelector(state => state.taskListReducer.taskList.filter((task:Task) => task.done === flag))
     const [currentTask, setCurrentTask] = useState(taskList[1])
     const handleOpen = () => setOpen(true);
     const handleClose = () => {
@@ -97,7 +96,18 @@ export const TaskList: React.FC<TaskListProps> = ({flag}) => {
 
 
             <Box className='tasklist-container'>
-                {taskList.filter((task:Task) => task.done === flag).map((task:Task) => <Task task={task}
+                {taskList
+                    .filter((task:Task)=>{
+                        if(filter){
+                            if(task.tags.includes(filter)){
+                                return task
+                            }
+                        }else{
+                            return task
+                        }
+                    })
+                    .filter((task:Task) => task.done === flag)
+                    .map((task:Task) => <Task task={task}
                                                                                    key={task.id}
                                                                                    handleOpen={handleOpen}
                                                                                    setCurrentTask={setCurrentTask}

@@ -1,7 +1,16 @@
-import {Box, Chip, FormControl, InputLabel, MenuItem, OutlinedInput, Select} from "@mui/material";
+import {
+    Box,
+    Chip,
+    FormControl,
+    InputLabel,
+    MenuItem,
+    OutlinedInput,
+    Select,
+} from "@mui/material";
 import React, {useState} from "react";
 import {Task} from "../../Task/Task";
 import {initialState} from "../../../reducers/inithialState";
+import {useAppSelector} from "../../../hooks";
 
 
 interface TagAreaProps{
@@ -11,7 +20,7 @@ interface TagAreaProps{
 
 
 export const TagArea: React.FC<TagAreaProps> = ({currentTask,setCurrentTask})=>{
-    const [allTags,setAlltags] = useState<Array<string>>(initialState.allTags)
+    const allTags = useAppSelector(state => state.tagSlice.allTags)
     const ITEM_HEIGHT = 48;
     const ITEM_PADDING_TOP = 8;
     const MenuProps = {
@@ -39,7 +48,7 @@ export const TagArea: React.FC<TagAreaProps> = ({currentTask,setCurrentTask})=>{
                     multiple
                     value={currentTask.tags}
                     onChange={handleChange}
-                    input={<OutlinedInput id='select-tags' label='select' />}
+                    input={<OutlinedInput  id='select-tags' label='select' />}
                     renderValue={(selected) => (
                         <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5 }}>
                             {selected.map((value) => (
@@ -62,3 +71,26 @@ export const TagArea: React.FC<TagAreaProps> = ({currentTask,setCurrentTask})=>{
         </>
     )
 }
+
+
+// <Stack>
+//     <Autocomplete
+//         multiple
+//         freeSolo
+//         options={tags.map(tag=>tag)}
+//         renderTags={(value, getTagProps) =>
+//             value.map((option, index) => (
+//                 <Chip variant="outlined" label={option} {...getTagProps({ index })} />
+//             ))
+//         }
+//         renderInput={(params) => (
+//             <TextField
+//                 {...params}
+//                 variant="outlined"
+//                 label="freeSolo"
+//                 placeholder="Favorites"
+//             />
+//         )}
+//
+//     />
+// </Stack>
