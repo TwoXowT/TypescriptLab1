@@ -1,10 +1,10 @@
 import React, {useEffect, useState} from 'react';
 import {Task} from '../Task/Task';
-import './TaskList.scss';
+// import './TaskList.scss';
 import {
     Box,
     IconButton,
-    Modal,
+    Modal, Stack,
     Typography, useTheme
 } from "@mui/material";
 import {ArrowDownward, ArrowUpward, CancelOutlined} from "@mui/icons-material";
@@ -90,12 +90,11 @@ export const TaskList: React.FC<TaskListProps> = ({flag,filter}) => {
 
 
 
-
     return (
         <>
 
 
-            <Box className='tasklist-container'>
+            <Stack spacing={1}>
                 {taskList
                     .filter((task:Task)=>{
                         if(filter){
@@ -108,14 +107,14 @@ export const TaskList: React.FC<TaskListProps> = ({flag,filter}) => {
                     })
                     .filter((task:Task) => task.done === flag)
                     .map((task:Task) => <Task task={task}
-                                                                                   key={task.id}
-                                                                                   handleOpen={handleOpen}
-                                                                                   setCurrentTask={setCurrentTask}
-                                                                                   completeTask={completeTask}
-                                                                                   deleteTask={deleteTask}
+                                              key={task.id}
+                                              handleOpen={handleOpen}
+                                              setCurrentTask={setCurrentTask}
+                                              completeTask={completeTask}
+                                              deleteTask={deleteTask}
 
-                />)}
-            </Box>
+                    />)}
+            </Stack>
 
             <Modal
                 open={open}
@@ -123,7 +122,7 @@ export const TaskList: React.FC<TaskListProps> = ({flag,filter}) => {
             >
 
                 <Box sx={style}>
-                    <Box className={'modaltask-navbar-container'}>
+                    <Box>
                         <IconButton disabled={isActivePrevTask}><ArrowUpward onClick={getPrevTask}/></IconButton>
                         <IconButton disabled={isActiveNextTask}><ArrowDownward onClick={getNextTask}/></IconButton>
                         <IconButton> <CancelOutlined color='error' onClick={handleClose}/></IconButton>

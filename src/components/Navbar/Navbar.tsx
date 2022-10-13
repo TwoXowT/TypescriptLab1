@@ -1,5 +1,5 @@
 import React from 'react';
-import {Box, Chip, Stack} from "@mui/material";
+import {Box, Chip, Stack, useTheme} from "@mui/material";
 import './Navbar.scss'
 import {
     BrowserRouter as Router,
@@ -11,14 +11,18 @@ import {MainTaskList} from "../MainTaskList/MainTaskList";
 import {FilterTaskList} from "../FilterTaskList/FilterTaskList";
 
 export const Navbar = () => {
-
+    const theme = useTheme()
+    const linkStyle = {
+        textDecoration: "none",
+        color: theme.palette.mode === 'dark' ? (theme.palette.grey[800]):(theme.palette.grey[50])
+    };
 
     return (
         <Router>
             <Box className='navbar-container'>
                 <Stack direction='row' spacing={1}>
-                    <Chip label={<Link to='/'>Main</Link>}/>
-                    <Chip label={<Link to='/filters'>Filters</Link>}/>
+                    <Chip color = 'primary' label={<Link style={linkStyle} to='/'>Входящие</Link>}/>
+                    <Chip  color = 'primary'label={<Link  style={linkStyle} to='/filters'>Метки</Link>}/>
                 </Stack>
             </Box>
             <Routes>

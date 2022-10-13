@@ -1,44 +1,27 @@
-.task{
-    display: flex;
-    justify-content: center;
-    word-break: break-all;
-    width: 100%;
-    text-align: left;
+.Container {
 
-    padding: 10px;
-    border-bottom: 1px solid #f0f0f0;
+    .Box-task {
+      display: flex;
+      justify-content: space-between;
 
-    .task-item{
-        font-size: 1.4em;
-        display: flex;
-        align-items: center;
+      .IconButton-ChekIcon {
 
-        width: 100%;
+      }
+
+      .IconButton-ChekIcon:disabled {
+
+      }
+
+      .Typography{
+          text-align: left;
+          align-items: center;
+          font-size: large;
+      }
+      .Typography-success{
+        text-decoration: line-through;
+      }
     }
 
-    .task-button-group{
-        display: flex;
-        .task-button{
-            width: 50%;
-        }
 
 
-    }
-
-}
-
-
-
-.done{
-    text-decoration: line-through;
-}
-.modaltask-navbar-container{
-    display: flex;
-    justify-content: flex-end;
-}
-
-.tags-container{
-    display: flex;
-    width: 100%;
-    justify-content: flex-start;
 }

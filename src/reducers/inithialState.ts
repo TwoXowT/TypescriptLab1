@@ -8,43 +8,43 @@ export const initialState: initialStateProps = {
     taskList: [
         {
             id: 0,
-            text: 'clean room',
+            text: 'Убрать дом',
             done: true,
-            tags: ['home'],
+            tags: ['дом'],
             description: '',
         },
         {
             id: 1,
-            text: 'Start learn Typescript 2',
+            text: 'Сделать ИИН',
             done: false,
-            tags: ['study'],
+            tags: ['документы'],
             description: '',
         },
         {
             id: 2,
-            text: 'to wash the dishes',
+            text: 'Канализацию почичтить',
             done: true,
-            tags: ['home', 'family','work'],
+            tags: ['дом','работа'],
             description: '',
         },
         {
             id: 3,
-            text: 'create summary',
+            text: 'Сделать резюме',
             done: false,
-            tags: ['work'],
+            tags: ['работа'],
             description: '',
         },
         {
             id: 4,
-            text: '2rbina 2rista - moralfuck 3',
+            text: 'Сыграть в шахматы',
             done: false,
-            tags: ['leisure'],
+            tags: ['досуг'],
             description: '',
         }
 
 
     ],
 
-    allTags:['work','leisure','home','family','study']
+    allTags:['работа','досуг','дом','семья','документы']
 
 }

@@ -10,9 +10,9 @@ export const MainTaskList: React.FC =()=>{
     return(
         <>
             <AddTask />
-            <h1> Current task</h1>
+            <h1> Входящие</h1>
             <TaskList flag={false}/>
-            <h1> Done task</h1>
+            <h1> Выполненные</h1>
             <TaskList flag={true}/>
 
         </>
