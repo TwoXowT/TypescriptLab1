@@ -6,8 +6,6 @@ import {ThemeProvider} from "@mui/material";
 import {darkTheme} from "./themes/dark";
 import {lightTheme} from "./themes/light";
 import {ColorContext} from "./ColorContext";
-import {SwitchModeButton} from "./SwitchModeButton";
-
 const App: React.FC = () => {
 
 
@@ -31,7 +29,7 @@ const App: React.FC = () => {
             <ColorContext.Provider value={colorMode}>
                 <ThemeProvider theme={theme}>
                     <CssBaseline enableColorScheme/>
-                    <SwitchModeButton />
+
                     <Container maxWidth='md'>
                         <Navbar/>
                     </Container>

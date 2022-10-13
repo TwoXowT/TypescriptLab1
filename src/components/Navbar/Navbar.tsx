@@ -9,6 +9,7 @@ import {
 } from "react-router-dom";
 import {MainTaskList} from "../MainTaskList/MainTaskList";
 import {FilterTaskList} from "../FilterTaskList/FilterTaskList";
+import {SwitchModeButton} from "../../SwitchModeButton";
 
 export const Navbar = () => {
     const theme = useTheme()
@@ -19,11 +20,18 @@ export const Navbar = () => {
 
     return (
         <Router>
-            <Box className='navbar-container'>
+            <Box
+                sx={{
+                    display: 'flex',
+                    justifyContent: 'space-between',
+                    alignItems: 'center'
+                }}
+                className='navbar-container'>
                 <Stack direction='row' spacing={1}>
                     <Chip color = 'primary' label={<Link style={linkStyle} to='/'>Входящие</Link>}/>
                     <Chip  color = 'primary'label={<Link  style={linkStyle} to='/filters'>Метки</Link>}/>
                 </Stack>
+                <SwitchModeButton />
             </Box>
             <Routes>
                 <Route path="/" element={ <MainTaskList/>}/>

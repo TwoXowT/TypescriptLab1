@@ -60,6 +60,7 @@ export const Task: React.FC<TaskProps> = ({
                         </IconButton>
 
                         <IconButton
+                            color='primary'
                             onClick={() => deleteTask(task.id)}
                         >
                             <DeleteIcon/>
